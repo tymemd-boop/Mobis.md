@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mobis – Dulapuri, comode și comode TV la comandă în Chișinău</title>
+        <meta name="description" content="Mobilă la comandă, pe dimensiunile tale: dulapuri, comode și comode TV. Configurează în 3D, vezi mobila într-o cameră amenajată și află prețul pe loc.">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <meta name="theme-color" content="#1c1815">
+        <script>document.documentElement.classList.add('js');</script>
+        <link rel="icon" type="image/png" href="favicon.png">
+        <link rel="stylesheet" href="style.css">
+        <link rel="preload" as="image" href="hero-wardrobe.jpg">
+    </head>
+    <body>
+        <!-- ===== HEADER ===== -->
+        <header class="header">
+            <div class="container header__inner">
+                <a href="index.html" class="logo" aria-label="Mobis – pagina principală"> <img src="logo-white.png" alt="mobis.md" class="logo__img" width="148" height="40"> </a>
+                <button class="nav-toggle" aria-label="Meniu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="nav" aria-label="Meniu principal">
+                    <a href="#contact" class="nav__pill">Măsurare gratuită</a>
+                    <a href="#produse">Produse</a>
+                    <a href="#despre">Despre noi</a>
+                    <a href="#intrebari">Întrebări</a>
+                    <a href="#contact">Contacte</a>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <!-- ===== HERO ===== -->
+            <section class="hero">
+                <div class="hero__scene" aria-hidden="true">
+                    <div class="hero__photo"></div>
+                </div>
+                <div class="container hero__content">
+                    <span class="eyebrow hero__eyebrow">Producător de mobilă · Chișinău</span>
+                    <h1>Mobilă făcută <em>pe măsura</em> casei tale</h1>
+                    <p>Dulapuri, comode și comode TV din PAL Egger, configurate în 3D. Alegi dimensiunile și culoarea, vezi piesa într-o cameră amenajată și afli prețul pe loc.</p>
+                    <div class="hero__actions">
+                        <a href="#produse" class="btn">Configurează mobila <span class="btn__arrow">→</span></a>
+                        <a href="#contact" class="btn btn--line">Măsurare gratuită</a>
+                    </div>
+                </div>
+                <div class="hero__badge" aria-hidden="true"><i></i><div><b>Bej închis U702</b>Decor Egger, culoarea sezonului</div></div>
+                <span class="hero__scroll" aria-hidden="true"></span>
+            </section>
+            <div class="marquee" aria-hidden="true">
+                <div class="marquee__track">
+                    <span>PAL Egger 18 mm</span><span>Feronerie cu închidere lină</span><span>Măsurare gratuită</span><span>Garanție 24 de luni</span><span>Montaj profesionist</span><span>Peste 25 de decoruri</span>
+                    <span>PAL Egger 18 mm</span><span>Feronerie cu închidere lină</span><span>Măsurare gratuită</span><span>Garanție 24 de luni</span><span>Montaj profesionist</span><span>Peste 25 de decoruri</span>
+                </div>
+            </div>
+            <!-- ===== AVANTAJE ===== -->
+            <section class="perks">
+                <div class="container perks__grid">
+                    <article class="perk" data-reveal>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 3h16v18H4zM12 3v18M9 11v2M15 11v2"/>
+                        </svg>
+                        <div>
+                            <h3>Design atent</h3>
+                            <p>Proporții curate, detalii discrete și materiale care arată bine ani la rând.</p>
+                        </div>
+                    </article>
+                    <article class="perk" data-reveal style="--d:.12s">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="13" r="8"/>
+                            <path d="M12 9v4l3 2M9 2h6"/>
+                        </svg>
+                        <div>
+                            <h3>Execuție rapidă</h3>
+                            <p>Producem și livrăm în aproximativ 15 zile lucrătoare de la confirmarea comenzii.</p>
+                        </div>
+                    </article>
+                    <article class="perk" data-reveal style="--d:.24s">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="8" cy="8" r="4"/>
+                            <circle cx="16" cy="8" r="4"/>
+                            <circle cx="12" cy="15" r="4"/>
+                        </svg>
+                        <div>
+                            <h3>Culori și decoruri lemn</h3>
+                            <p>Bej închis U702, stejar, nuc și multe altele. Îți aducem mostre acasă.</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <!-- ===== PRODUSE ===== -->
+            <section class="products" id="produse">
+                <div class="container">
+                    <div class="section-head" data-reveal>
+                        <span class="eyebrow">Configuratoare 3D</span>
+                        <h2>Alege piesa și <em>începe personalizarea</em></h2>
+                        <p>Fiecare piesă se face pe dimensiunile tale, la centimetru. Culoarea aleasă te urmează de la un configurator la altul.</p>
+                    </div>
+                    <div class="products__grid">
+                        <a class="product" href="dulap.html" data-reveal="zoom" data-tilt>
+                            <div class="product__art">
+                                <span class="product__tag">Dormitor · Hol</span>
+                                <img src="product-wardrobe.jpg" alt="Dulap cu uși bej, compartimente vitrate și iluminare interioară" width="853" height="1280" loading="lazy" decoding="async">
+                            </div>
+                            <div class="product__body">
+                                <h3>Dulap la comandă</h3>
+                                <p>Până la 4 m lățime, cu bare, rafturi, sertare, antresol și soclu la alegere.</p>
+                                <span class="product__cta">Personalizează</span>
+                            </div>
+                        </a>
+                        <a class="product" href="comoda.html" data-reveal="zoom" style="--d:.12s" data-tilt>
+                            <div class="product__art">
+                                <span class="product__tag">Dormitor · Living</span>
+                                <svg viewBox="0 0 400 400" role="img" aria-label="Comodă din stejar cu sertare și picioare din alamă">
+                                    <defs>
+                                        <linearGradient id="oakA" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#c79d6c"/><stop offset="1" stop-color="#9c7348"/></linearGradient>
+                                        <filter id="grainA"><feTurbulence type="fractalNoise" baseFrequency="0.004 0.12" numOctaves="3" seed="3"/><feColorMatrix values="0 0 0 0 .3  0 0 0 0 .18  0 0 0 0 .08  1.4 0 0 0 -.55"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+                                        <radialGradient id="glowA"><stop offset="0" stop-color="#ffd9a0" stop-opacity=".55"/><stop offset="1" stop-color="#ffd9a0" stop-opacity="0"/></radialGradient>
+                                    </defs>
+                                    <circle cx="105" cy="120" r="110" fill="url(#glowA)"/>
+                                    <rect x="150" y="40" width="100" height="120" rx="2" fill="#2b241f" stroke="#7a5a3e" stroke-width="6"/>
+                                    <circle cx="186" cy="92" r="26" fill="#b8714f"/><rect x="200" y="100" width="36" height="48" fill="#6f7556"/>
+                                    <ellipse cx="200" cy="338" rx="160" ry="10" fill="#000" opacity=".35"/>
+                                    <rect x="55" y="180" width="290" height="140" rx="3" fill="url(#oakA)"/>
+                                    <rect x="55" y="180" width="290" height="140" rx="3" filter="url(#grainA)" fill="#fff"/>
+                                    <rect x="55" y="178" width="290" height="8" rx="2" fill="#a47b52"/>
+                                    <path d="M200 186v134M59 232h137M59 278h137M204 232h137M204 278h137" stroke="#5a3f2a" stroke-width="2" opacity=".6"/>
+                                    <path d="M115 206h22M115 252h22M115 298h22M262 206h22M262 252h22M262 298h22" stroke="#d9b77a" stroke-width="4" stroke-linecap="round"/>
+                                    <path d="M75 320l-5 22M325 320l5 22M110 320l-2 18M290 320l2 18" stroke="#c9a15e" stroke-width="5" stroke-linecap="round"/>
+                                    <path d="M98 178v-36" stroke="#c9a15e" stroke-width="3"/><path d="M80 142h36l-8-34h-20z" fill="#f3e6cf"/>
+                                    <path d="M300 178c-8-4-10-16-6-30h18c4 14 2 26-6 30z" fill="#e9e1d4"/><path d="M302 150c-4-20 8-38 22-48M303 148c6-14 0-30-10-40" stroke="#6f7556" stroke-width="2.4" fill="none"/>
+                                </svg>
+                            </div>
+                            <div class="product__body">
+                                <h3>Comodă</h3>
+                                <p>Sertare, uși sau rafturi deschise, pe picioare din alamă, pe soclu sau pe cadru metalic.</p>
+                                <span class="product__cta">Personalizează</span>
+                            </div>
+                        </a>
+                        <a class="product" href="comoda-tv.html" data-reveal="zoom" style="--d:.24s" data-tilt>
+                            <div class="product__art">
+                                <span class="product__tag">Living</span>
+                                <svg viewBox="0 0 400 400" role="img" aria-label="Comodă TV joasă în bej închis, cu televizor pe perete cu lamele de lemn">
+                                    <defs>
+                                        <linearGradient id="u702B" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#b0a495"/><stop offset="1" stop-color="#93877a"/></linearGradient>
+                                        <linearGradient id="screenB" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#3a4145"/><stop offset=".5" stop-color="#1d2124"/><stop offset="1" stop-color="#2a3034"/></linearGradient>
+                                    </defs>
+                                    <g stroke="#6e4e37" stroke-width="7" opacity=".9">
+                                        <path d="M40 30v255M52 30v255M64 30v255M76 30v255M88 30v255M100 30v255M112 30v255M124 30v255M136 30v255M148 30v255M160 30v255M172 30v255M184 30v255M196 30v255M208 30v255M220 30v255M232 30v255M244 30v255M256 30v255M268 30v255M280 30v255M292 30v255M304 30v255M316 30v255M328 30v255M340 30v255M352 30v255M364 30v255"/>
+                                    </g>
+                                    <rect x="95" y="70" width="210" height="120" rx="3" fill="#111" /><rect x="99" y="74" width="202" height="112" fill="url(#screenB)"/>
+                                    <path d="M99 74l90 0-60 112h-30z" fill="#fff" opacity=".05"/>
+                                    <ellipse cx="200" cy="330" rx="175" ry="9" fill="#000" opacity=".35"/>
+                                    <rect x="28" y="246" width="344" height="72" rx="3" fill="url(#u702B)"/>
+                                    <path d="M114 248v68M200 248v68M286 248v68M117 282h80" stroke="#6b6055" stroke-width="2"/>
+                                    <rect x="31" y="249" width="80" height="66" fill="#2b241f"/>
+                                    <path d="M38 315v-36h5v36zM45 315v-30h6v30zM53 315v-40h4v40z" fill="#b8714f"/><path d="M60 315v-32h5v32z" fill="#e8dccb"/><path d="M70 315v-34h7v34z" fill="#6f7556"/>
+                                    <path d="M140 264h30M140 298h30M226 300h30M312 300h30" stroke="#e6dccf" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+                                    <path d="M45 318v14M355 318v14" stroke="#2a2a2a" stroke-width="4"/>
+                                    <path d="M335 246c-6-3-8-12-5-22h14c3 10 1 19-6 22z" fill="#e9e1d4"/>
+                                </svg>
+                            </div>
+                            <div class="product__body">
+                                <h3>Comodă TV</h3>
+                                <p>Pe lungimea peretelui tău, cu sertare, uși rabatabile, sticlă sau nișe pentru console.</p>
+                                <span class="product__cta">Personalizează</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+            <!-- ===== IMAGINEA CARE SE DESCOMPUNE ===== -->
+            <section class="split" aria-label="Atelierul Mobis">
+                <div class="split__sticky">
+                    <div class="split__img" aria-hidden="true">
+                        <span><img src="hero-wardrobe.jpg" alt="" loading="lazy"></span><span><img src="hero-wardrobe.jpg" alt="" loading="lazy"></span><span><img src="hero-wardrobe.jpg" alt="" loading="lazy"></span><span><img src="hero-wardrobe.jpg" alt="" loading="lazy"></span><span><img src="hero-wardrobe.jpg" alt="" loading="lazy"></span><span><img src="hero-wardrobe.jpg" alt="" loading="lazy"></span>
+                    </div>
+                    <div class="split__text">
+                        <span class="eyebrow">Din atelierul nostru</span>
+                        <h2>Fiecare panou, tăiat <em>la milimetru</em></h2>
+                        <p>Proiectăm piesă cu piesă: corp, fronturi, feronerie. Apoi le asamblăm în mobila care se potrivește exact în colțul tău.</p>
+                    </div>
+                </div>
+            </section>
+            <!-- ===== CIFRE ===== -->
+            <section class="stats">
+                <div class="container stats__grid">
+                    <div data-reveal><b data-count="15">15</b><span>zile lucrătoare pentru producție</span></div>
+                    <div data-reveal style="--d:.1s"><b data-count="24">24</b><span>luni garanție</span></div>
+                    <div data-reveal style="--d:.2s"><b data-count="25" data-suffix="+">25+</b><span>culori și decoruri lemn</span></div>
+                    <div data-reveal style="--d:.3s"><b data-count="3">3</b><span>configuratoare 3D</span></div>
+                </div>
+            </section>
+            <!-- ===== MATERIALE ===== -->
+            <section class="materials wood">
+                <div class="container materials__inner">
+                    <div data-reveal="left">
+                        <span class="eyebrow">Decoruri Egger</span>
+                        <h2>Bej închis U702 și <em>nuanțe calde de lemn</em></h2>
+                        <p>Lucrăm cu plăci Egger de 18 mm. Culoarea preferată a clienților noștri este Bej închis U702, un cașmir cald care se potrivește cu stejarul, nucul și alama.</p>
+                        <p>Toate decorurile sunt în configurator, iar în modul „cameră amenajată” vezi cum arată piesa lângă parchet, fereastră și mobilier.</p>
+                        <a href="comoda.html?c=a69a8b" class="btn">Încearcă U702 în configurator <span class="btn__arrow">→</span></a>
+                    </div>
+                    <div class="chips" data-reveal="right">
+                        <div class="chip chip--big" style="--c:#a69a8b"><span>Bej închis U702<small>Egger · mat</small></span></div>
+                        <div class="chip chip--wood" style="--c:#b08a5e"><span>Stejar Halifax</span></div>
+                        <div class="chip chip--wood" style="--c:#6e4e37"><span>Nuc</span></div>
+                        <div class="chip chip--wood" style="--c:#c8a57c"><span>Stejar deschis</span></div>
+                        <div class="chip chip--wood" style="--c:#7a5a3e"><span>Stejar tutun</span></div>
+                    </div>
+                </div>
+            </section>
+            <!-- ===== CUM LUCRĂM ===== -->
+            <section class="steps">
+                <div class="container">
+                    <div class="section-head" data-reveal>
+                        <span class="eyebrow">Procesul</span>
+                        <h2>Cum lucrăm</h2>
+                        <p>De la prima idee până la montaj, fără surprize.</p>
+                    </div>
+                    <ol class="steps__list">
+                        <li data-reveal style="--d:0.0s">
+                            <b>01</b>
+                            <h3>Configurezi</h3>
+                            <p>Alegi dimensiunile și compartimentele în configurator.</p>
+                        </li>
+                        <li data-reveal style="--d:0.1s">
+                            <b>02</b>
+                            <h3>Măsurăm</h3>
+                            <p>Venim gratuit acasă și verificăm fiecare dimensiune.</p>
+                        </li>
+                        <li data-reveal style="--d:0.2s">
+                            <b>03</b>
+                            <h3>Semnăm contractul</h3>
+                            <p>Stabilim prețul final și termenul de livrare.</p>
+                        </li>
+                        <li data-reveal style="--d:0.3s">
+                            <b>04</b>
+                            <h3>Producem</h3>
+                            <p>Mobila e gata în circa 15 zile lucrătoare.</p>
+                        </li>
+                        <li data-reveal style="--d:0.4s">
+                            <b>05</b>
+                            <h3>Livrăm și montăm</h3>
+                            <p>Aducem și asamblăm totul la tine acasă.</p>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+            <!-- ===== ÎNTREBĂRI ===== -->
+            <section class="faq" id="intrebari">
+                <div class="container faq__inner">
+                    <div class="section-head section-head--left" data-reveal="left">
+                        <span class="eyebrow">Întrebări</span>
+                        <h2>Întrebări frecvente</h2>
+                        <p>Nu ai găsit răspunsul? <a href="#contact">Scrie-ne</a>.</p>
+                    </div>
+                    <div class="faq__list" data-reveal>
+                        <details>
+                            <summary>Din ce materiale este făcută mobila?</summary>
+                            <p>Folosim PAL melaminat de 18 mm de la producători europeni și feronerie cu închidere lină. Garanția este de 24 de luni.</p>
+                        </details>
+                        <details>
+                            <summary>Cât durează producția?</summary>
+                            <p>De regulă 10–15 zile lucrătoare de la semnarea contractului, în funcție de complexitatea comenzii.</p>
+                        </details>
+                        <details>
+                            <summary>Cum văd culorile înainte de comandă?</summary>
+                            <p>Îți aducem gratuit mostre de culori, ca să le vezi în lumina camerei tale.</p>
+                        </details>
+                        <details>
+                            <summary>Prețul din configurator este final?</summary>
+                            <p>Este un preț estimativ foarte apropiat. Prețul final se confirmă după măsurarea gratuită la domiciliu.</p>
+                        </details>
+                        <details>
+                            <summary>Livrați și în afara Chișinăului?</summary>
+                            <p>Da, livrăm în toată Moldova. Costul livrării în afara orașului se stabilește separat.</p>
+                        </details>
+                        <details>
+                            <summary>Cum se achită comanda?</summary>
+                            <p>Achiți un avans la semnarea contractului, iar restul la livrare, numerar sau cu cardul.</p>
+                        </details>
+                    </div>
+                </div>
+            </section>
+            <!-- ===== DESPRE NOI ===== -->
+            <section class="about wood" id="despre">
+                <div class="container about__inner">
+                    <div class="about__photo" data-reveal="zoom" data-parallax>
+                        <img src="product-wardrobe.jpg" alt="Dulap Mobis cu compartimente iluminate" width="853" height="1280" loading="lazy" decoding="async">
+                    </div>
+                    <div data-reveal="right">
+                        <span class="eyebrow">Despre noi</span>
+                        <h2>Un atelier mic, cu <em>grijă pentru detalii</em></h2>
+                        <p>Suntem o echipă de designeri și meșteri care face mobilă pe măsură. Ne place să găsim soluția potrivită pentru fiecare colț, fie că e un dulap sub mansardă sau un dulap pentru un hol mic.</p>
+                        <p>Lucrăm cu materiale verificate, oferim garanție și ne ocupăm de tot drumul: măsurare, producție, livrare și montaj.</p>
+                    </div>
+                </div>
+            </section>
+            <!-- ===== CONTACT ===== -->
+            <section class="contact" id="contact">
+                <div class="container contact__inner">
+                    <div class="contact__info" data-reveal="left">
+                        <span class="eyebrow">Contacte</span>
+                        <h2>Programează măsurarea gratuită</h2>
+                        <p>Lasă-ne datele și te contactăm în cel mult o zi lucrătoare.</p>
+                        <ul class="contact__list">
+                            <li>
+                                <span>Telefon</span>
+                                <a href="tel:+37360605409">+373 60 605 409</a>
+                            </li>
+                            <li>
+                                <span>Email</span>
+                                <a href="mailto:tyme.md@gmail.com">tyme.md@gmail.com</a>
+                            </li>
+                            <li>
+                                <span>Adresă</span>str. Primar Gherman Pantea 100, Chișinău
+                            </li>
+                            <li>
+                                <span>Program</span>Luni – Vineri, 09:00 – 18:00
+                            </li>
+                        </ul>
+                    </div>
+                    <form class="contact__form" id="contactForm" novalidate data-reveal="right">
+                        <div class="form-row">
+                            <label for="f-name">Nume</label>
+                            <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Numele tău" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="f-phone">Telefon</label>
+                            <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="+373 ..." required>
+                        </div>
+                        <div class="form-row">
+                            <label for="f-topic">Subiect</label>
+                            <select id="f-topic" name="topic">
+                                <option>Măsurare gratuită</option>
+                                <option>Mostre de culori</option>
+                                <option>Dulap la comandă</option>
+                                <option>Comodă la comandă</option>
+                                <option>Comodă TV la comandă</option>
+                                <option>Altă întrebare</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="f-msg">Mesaj</label>
+                            <textarea id="f-msg" name="message" rows="4" placeholder="Spune-ne ce ai nevoie"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--full">Trimite pe WhatsApp</button>
+                        <p class="form-status" role="status"></p>
+                    </form>
+                </div>
+            </section>
+        </main>
+        <!-- ===== FOOTER ===== -->
+        <footer class="footer">
+            <div class="container footer__inner">
+                <div>
+                    <a href="index.html" class="logo logo--footer"><img src="logo-white.png" alt="mobis.md" class="logo__img" width="130" height="35"></a>
+                    <p>Mobilă la comandă în Chișinău.</p>
+                </div>
+                <nav aria-label="Produse">
+                    <h4>Produse</h4>
+                    <a href="dulap.html">Dulapuri</a>
+                    <a href="comoda.html">Comode</a>
+                    <a href="comoda-tv.html">Comode TV</a>
+                </nav>
+                <nav aria-label="Companie">
+                    <h4>Companie</h4>
+                    <a href="#despre">Despre noi</a>
+                    <a href="#intrebari">Întrebări frecvente</a>
+                    <a href="#contact">Contacte</a>
+                </nav>
+                <div>
+                    <h4>Urmărește-ne</h4>
+                    <a href="#" aria-label="Instagram">Instagram</a>
+                    <a href="#" aria-label="Facebook">Facebook</a>
+                </div>
+            </div>
+            <div class="container footer__bottom">© <span data-year></span> Mobis
+            </div>
+        </footer>
+        <script src="site.js"></script>
+    </body>
+</html>
