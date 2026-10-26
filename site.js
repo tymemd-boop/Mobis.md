@@ -4,7 +4,8 @@
 window.SITE = {
   whatsapp: '37360605409',   // numărul WhatsApp, cu prefixul țării, fără + și spații
   delivery: 500,             // prețul livrării, lei
-  assemblyRate: 0.07         // asamblarea: 7% din prețul produsului
+  assemblyRate: 0.15,        // asamblarea: 15% din prețul produsului (comodă, comodă TV)
+  wardrobeAssemblyRate: 0.07 // asamblarea la dulap: 7% din prețul produsului
 };
 
 (function () {
@@ -56,12 +57,12 @@ window.SITE = {
   // Elementele noi „ies în prim-plan” când apar pe ecran
   const reveals = document.querySelectorAll('[data-reveal]');
   const countUp = el => {
-    const target = +el.dataset.count, suffix = el.dataset.suffix || '';
-    if (reducedMotion.matches) { el.textContent = target + suffix; return; }
+    const target = +el.dataset.count, suffix = el.dataset.suffix || '', prefix = el.dataset.prefix || '';
+    if (reducedMotion.matches) { el.textContent = prefix + target + suffix; return; }
     const t0 = performance.now();
     const tick = now => {
       const k = progress((now - t0) / 1400);
-      el.textContent = Math.round(target * (1 - Math.pow(1 - k, 3))) + suffix;
+      el.textContent = prefix + Math.round(target * (1 - Math.pow(1 - k, 3))) + suffix;
       if (k < 1) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
