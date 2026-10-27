@@ -984,7 +984,7 @@
   panel.innerHTML = `
     <div class="cp-head">
       <nav class="cp-switch" aria-label="Alege produsul">${PAGES.map(([k, href, label]) =>
-        `<a href="${href}" data-switch="${k}"${k === key ? ' class="is-active" aria-current="page"' : ''}>${label}</a>`).join('')}</nav>
+        `<a href="${href}" data-switch="${k}"${k === key ? ' class="is-active" aria-current="page"' : ''}>${label}</a>`).join('')}<span aria-disabled="true">Bucătărie<small>În curând</small></span></nav>
       <h1 class="cp-title">${P.title}</h1>
       <div class="cp-buy">
         <div class="cp-price"><span id="cpPrice">0</span> lei

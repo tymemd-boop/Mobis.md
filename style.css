@@ -144,7 +144,7 @@ svg { display: block; }
 
 /* ===== Produse ===== */
 .products { padding: 110px 0; }
-.products__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.products__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
 .product { position: relative; display: flex; flex-direction: column; text-decoration: none; background: var(--surface); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); transition: transform .6s var(--ease), box-shadow .6s, border-color .4s; transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
 .product:hover { box-shadow: var(--shadow); border-color: var(--line-strong); }
 .product__art { position: relative; aspect-ratio: 4 / 4.4; display: grid; place-items: center; overflow: hidden; background: radial-gradient(120% 90% at 50% 20%, #4a4038, #2a241f); }
@@ -160,6 +160,12 @@ svg { display: block; }
 .product__cta { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: .92rem; color: var(--u702-light); }
 .product__cta::after { content: '→'; transition: transform .3s var(--ease); }
 .product:hover .product__cta::after { transform: translateX(6px); }
+.product__soon { position: absolute; z-index: 2; top: 18px; right: 18px; padding: 6px 12px; border-radius: 999px; background: var(--u702); color: var(--ink); font-size: .74rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+.product--soon .product__art img { filter: brightness(.78) saturate(.85); }
+.product--soon:hover .product__art img { filter: brightness(.86) saturate(.9); }
+.product--soon .product__cta { text-decoration: none; }
+.cp-switch span { flex: 1; text-align: center; padding: 7px 8px; font-size: .82rem; color: var(--muted); opacity: .55; cursor: default; white-space: nowrap; }
+.cp-switch small { display: block; font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; }
 
 /* ===== Imagine care se descompune la scroll ===== */
 .split { position: relative; height: 240vh; --sp: 0; }
