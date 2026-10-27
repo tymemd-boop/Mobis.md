@@ -173,13 +173,17 @@
   }
 
   /* ---------- Starea (citită din link) ---------- */
-  // Culoarea și mânerele se păstrează între dulap, comodă și comoda TV
+  // Fiecare configurator pornește de la setările implicite, la fel pe orice dispozitiv.
+  // Linkurile salvate înainte de ultima schimbare a setărilor (alt CFG_VERSION) păstrează doar culoarea și camera.
+  const CFG_VERSION = '2';
   const PAGES = [['wardrobe', 'dulap.html', 'Dulap'], ['dresser', 'comoda.html', 'Comodă'], ['tv', 'comoda-tv.html', 'Comodă TV']];
-  let shared = {};
-  try { shared = JSON.parse(localStorage.getItem('mobis-cfg')) || {}; } catch (e) { shared = {}; }
-  const q = new URLSearchParams(location.search);
-  if (!q.has('c') && shared.c) q.set('c', shared.c);
-  if (!q.has('handle') && shared.handle) q.set('handle', shared.handle);
+  try { localStorage.removeItem('mobis-cfg'); } catch (e) { /* mod privat */ }
+  let q = new URLSearchParams(location.search);
+  if (q.get('v') !== CFG_VERSION) {
+    const keep = new URLSearchParams();
+    ['c', 'room'].forEach(k => { if (q.has(k)) keep.set(k, q.get(k)); });
+    q = keep;
+  }
   const qNum = (k, r) => { const v = parseInt(q.get(k), 10); return isNaN(v) ? r[2] : clamp(v, r[0], r[1]); };
   const state = {
     w: qNum('w', P.dims.w), h: qNum('h', P.dims.h), d: qNum('d', P.dims.d),
@@ -1175,11 +1179,10 @@
       b.setAttribute('aria-pressed', String(active));
     });
     document.querySelectorAll('[data-action="room"]').forEach(b => b.classList.toggle('is-active', state.room !== 'off'));
-    // sincronizare cu celelalte configuratoare
-    try { localStorage.setItem('mobis-cfg', JSON.stringify({ c: state.color.slice(1), handle: state.opts.handle })); } catch (e) { /* mod privat */ }
+    // trecerea la alt configurator păstrează doar culoarea și camera
     panel.querySelectorAll('[data-switch]').forEach(a => {
       const page = PAGES.find(x => x[0] === a.dataset.switch);
-      a.href = page[1] + '?' + new URLSearchParams({ c: state.color.slice(1), handle: state.opts.handle, ...(state.room !== 'off' ? { room: state.room } : {}) });
+      a.href = page[1] + '?' + new URLSearchParams({ c: state.color.slice(1), ...(state.room !== 'off' ? { room: state.room } : {}) });
     });
     // butonul uși
     document.querySelectorAll('[data-action="toggle"]').forEach(b => {
@@ -1211,7 +1214,7 @@
   }
 
   function syncUrl() {
-    const p = new URLSearchParams({ w: state.w, h: state.h, d: state.d, c: state.color.slice(1), n: state.cols, cfg: state.fills.join(',') });
+    const p = new URLSearchParams({ v: CFG_VERSION, w: state.w, h: state.h, d: state.d, c: state.color.slice(1), n: state.cols, cfg: state.fills.join(',') });
     allOptions.forEach(o => p.set(o.key, state.opts[o.key]));
     if (key === 'wardrobe') Object.keys(STRUCTURE_DIMS).forEach(field => p.set(field, state.structure[field]));
     if (state.room !== 'off') p.set('room', state.room);
