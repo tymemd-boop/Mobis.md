@@ -56,7 +56,7 @@
       ],
       defaultFill: i => (i % 2 ? 'S' : 'H'),
       options: [
-        { key: 'handle', label: 'Mânere', def: 'profile', choices: [['profile', 'Profil'], ['bar', 'Mâner'], ['push', 'Push-to-open']] },
+        { key: 'handle', label: 'Mânere', def: 'bar', choices: [['bar', 'Mâner'], ['profile', 'Profil'], ['push', 'Push-to-open']] },
         { key: 'side', label: 'Deschidere uși', def: 'left', choices: [['left', 'Stânga'], ['right', 'Dreapta']] }
       ],
       price(s) {
@@ -146,12 +146,13 @@
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const fmt = v => v.toLocaleString('ro-RO').replace(/\./g, ' ');
   const STRUCTURE_OPTIONS = [
-    { key: 'base', label: 'Soclu', def: 'recessed', choices: [['recessed', 'Retras'], ['flush', 'La nivel'], ['legs', 'Picioare'], ['none', 'Fără soclu']] },
+    { key: 'base', label: 'Soclu', def: 'flush', choices: [['recessed', 'Retras'], ['flush', 'La nivel'], ['legs', 'Picioare'], ['none', 'Fără soclu']] },
     { key: 'roof', label: 'Partea superioară', def: 'standard', choices: [['standard', 'Standard'], ['rim', 'Laterale înălțate'], ['fascia', 'Bandă frontală'], ['inset', 'Bandă retrasă']] },
     { key: 'mezz', label: 'Uși depozitar sus', def: 'full', choices: [['full', 'Uși întregi'], ['split', 'Uși separate']] }
   ];
   const STRUCTURE_DIMS = {
-    baseHeight: [4, 20, 8], setback: [0, 10, 4], roofHeight: [4, 20, 6]
+    baseHeight: [4, 20, 8], setback: [0, 10, 4], roofHeight: [4, 20, 6],
+    handleLength: [10, 200, 120], handleFrom: [0, 150, 0]
   };
   const allOptions = key === 'wardrobe' ? P.options.concat(STRUCTURE_OPTIONS) : P.options;
   const bodyHeight = s => s.h - (s.opts.roof === 'standard' ? 0 : s.structure.roofHeight);
@@ -422,15 +423,17 @@
   }
 
   // Ușă cu balama verticală
-  function addDoor(o, x0, x1, y0, y1, z, hinge, handle, handleY, mat) {
+  // handleLen: mâner lung, iar handleY este capătul lui de jos
+  function addDoor(o, x0, x1, y0, y1, z, hinge, handle, handleY, mat, handleLen) {
     const dw = x1 - x0, dh = y1 - y0, sg = hinge === 'left' ? 1 : -1;
     const piv = new THREE.Group();
     piv.position.set(hinge === 'left' ? x0 : x1, y0, z);
     box(dw, dh, mat ? 0.6 : T, sg * dw / 2, dh / 2, T / 2, mat || M.body, piv);
     if (mat) [[dw, 2.2, sg * dw / 2, 1.1], [dw, 2.2, sg * dw / 2, dh - 1.1]].forEach(r => box(r[0], r[1], T, r[2], r[3], T / 2, M.dark, piv));
     if (handle === 'bar') {
-      const hl = Math.min(32, dh * 0.4);
-      const hy = handleY != null ? clamp(handleY - y0, hl / 2 + 4, dh - hl / 2 - 4) : dh / 2;
+      const hl = handleLen ? Math.min(handleLen, dh - 4) : Math.min(32, dh * 0.4);
+      const hy = handleLen ? clamp(handleY - y0 + hl / 2, hl / 2 + 2, dh - hl / 2 - 2)
+        : handleY != null ? clamp(handleY - y0, hl / 2 + 4, dh - hl / 2 - 4) : dh / 2;
       box(1.2, hl, 1.2, sg * (dw - 4), hy, T + 1.6, M.metal, piv);
       box(1, 1, 1.6, sg * (dw - 4), hy + hl / 2 - 3, T + 0.8, M.metal, piv);
       box(1, 1, 1.6, sg * (dw - 4), hy - hl / 2 + 3, T + 0.8, M.metal, piv);
@@ -564,7 +567,9 @@
     // Uși (suprapuse pe toată fața)
     const zf = D + 0.15;
     const split = yt + T / 2;
-    const rows = splitDoors(s) ? [[PL + 0.2, split - 0.15, 100], [split + 0.15, H - 0.2, null]] : [[PL + 0.2, H - 0.2, 100]];
+    const bottomDoor = splitDoors(s) ? [PL + 0.2, split - 0.15] : [PL + 0.2, H - 0.2];
+    const rows = [bottomDoor.concat(PL + 0.2 + s.structure.handleFrom, s.structure.handleLength)];
+    if (splitDoors(s)) rows.push([split + 0.15, H - 0.2, null, null]);
     cols.forEach((c, i) => {
       const span = c.right - c.left, k = span > DOOR_MAX ? 2 : 1;
       for (let j = 0; j < k; j++) {
@@ -572,7 +577,7 @@
         let hinge;
         if (k === 2) hinge = j === 0 ? 'left' : 'right';
         else hinge = ((i % 2 === 0) === (s.opts.side === 'left')) ? 'left' : 'right';
-        rows.forEach(r => addDoor(o, x0, x1, r[0], r[1], zf, hinge, s.opts.handle, r[2]));
+        rows.forEach(r => addDoor(o, x0, x1, r[0], r[1], zf, hinge, s.opts.handle, r[2], null, r[3]));
       }
     });
     return o;
@@ -953,7 +958,7 @@
     return `<div class="cp-dim" data-structure-row="${field}">
       <label for="in-${field}">${label}</label>
       <div class="cp-num"><input type="number" id="in-${field}" data-structure="${field}" min="${range[0]}" max="${range[1]}" step="1" inputmode="numeric"><span>cm</span></div>
-      <input type="range" data-structure="${field}" min="${range[0]}" max="${range[1]}" step="1" aria-label="${label} — ${field === 'roofHeight' ? 'partea superioară' : 'soclu'}">
+      <input type="range" data-structure="${field}" min="${range[0]}" max="${range[1]}" step="1" aria-label="${label} — ${field === 'roofHeight' ? 'partea superioară' : field.startsWith('handle') ? 'mâner' : 'soclu'}">
     </div>`;
   }
 
@@ -987,7 +992,7 @@
       <p class="cp-helpbox" id="cpHelpBox" hidden>Prețul este estimativ și include materialele și feroneria. Prețul final îl confirmăm după măsurarea gratuită la domiciliu.</p>
     </div>
 
-    <section class="cp-sec">
+    <section class="cp-sec" data-sec="services">
       <h3>Servicii</h3>
       <div class="cp-services">
         <label class="svc"><input type="checkbox" data-svc="delivery"><span>Livrare</span><b>+${fmt(SITE.delivery)} lei</b></label>
@@ -995,7 +1000,7 @@
       </div>
     </section>
 
-    <section class="cp-sec">
+    <section class="cp-sec" data-sec="dims">
       <h3>Dimensiuni</h3>
       ${dimRow('w', 'Lățime')}${dimRow('h', 'Înălțime')}${dimRow('d', 'Adâncime')}
       <a class="cp-link" href="index.html#contact">Solicită măsurarea gratuită la domiciliu</a>
@@ -1009,14 +1014,15 @@
       <a class="cp-link" href="index.html#contact">Nu ești sigur? Comandă mostre de culori</a>
     </section>
 
-    <section class="cp-sec">
+    <section class="cp-sec" data-sec="options">
       <h3>Opțiuni</h3>
       <div class="cp-opt"><span>${key === 'wardrobe' ? 'Coloane' : 'Secțiuni'}</span><div id="cpCols"></div></div>
       ${P.options.map(o => `<div class="cp-opt"><span>${o.label}</span><div class="seg" data-opt="${o.key}">
-        ${o.choices.map(c => `<button type="button" data-val="${c[0]}">${c[1]}</button>`).join('')}</div></div>`).join('')}
+        ${o.choices.map(c => `<button type="button" data-val="${c[0]}">${c[1]}</button>`).join('')}</div></div>` +
+        (key === 'wardrobe' && o.key === 'handle' ? structureRow('handleLength', 'Lungime mâner') + structureRow('handleFrom', 'De la marginea de jos a ușii') : '')).join('')}
     </section>
 
-    <section class="cp-sec" id="cpConfig">
+    <section class="cp-sec" id="cpConfig" data-sec="config">
       <h3>${key === 'wardrobe' ? 'Compartimentare interioară' : 'Configurează'}</h3>
       <p class="cp-note">${key === 'wardrobe' ? 'Alege o variantă pentru fiecare coloană. Ușile se deschid pentru a vedea interiorul.' : 'Alege sertare, uși sau nișe pentru fiecare secțiune.'}</p>
       <div class="cp-tabs" id="cpTabs"></div>
@@ -1047,6 +1053,11 @@
       </div>
       <button type="button" class="btn btn--small btn--full cp-shot" data-action="download">Descarcă imaginea</button>
     </section>`;
+  // La dulap: Dimensiuni, Compartimentare, Opțiuni, Servicii, apoi restul
+  if (key === 'wardrobe') {
+    const head = panel.querySelector('.cp-head');
+    ['services', 'options', 'config', 'dims'].forEach(k => head.after(panel.querySelector(`[data-sec="${k}"]`)));
+  }
 
   const $ = s => panel.querySelector(s);
 
@@ -1111,7 +1122,8 @@
         const row = panel.querySelector(`[data-structure-row="${field}"]`);
         row.hidden = (field === 'baseHeight' && state.opts.base === 'none') ||
           (field === 'setback' && state.opts.base !== 'recessed') ||
-          (field === 'roofHeight' && state.opts.roof === 'standard');
+          (field === 'roofHeight' && state.opts.roof === 'standard') ||
+          (field.startsWith('handle') && state.opts.handle !== 'bar');
         row.querySelectorAll('input').forEach(input => {
           input.value = state.structure[field];
           input.disabled = row.hidden;
@@ -1186,6 +1198,7 @@
       if (state.opts.base !== 'none') lines.push(`Înălțime soclu / picioare: ${state.structure.baseHeight} cm`);
       if (state.opts.base === 'recessed') lines.push(`Retragere soclu: ${state.structure.setback} cm`);
       if (state.opts.roof !== 'standard') lines.push(`Înălțime parte superioară: ${state.structure.roofHeight} cm`);
+      if (state.opts.handle === 'bar') lines.push(`Mâner: ${state.structure.handleLength} cm, la ${state.structure.handleFrom} cm de marginea de jos a ușii`);
       if (storage(state)) lines.push(`Depozitar sus: ${Math.round(storage(state))} cm`);
     }
     const svc = [state.svc.delivery && 'livrare', state.svc.assembly && 'asamblare'].filter(Boolean);
