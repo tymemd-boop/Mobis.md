@@ -152,13 +152,14 @@
   ];
   const STRUCTURE_DIMS = {
     baseHeight: [4, 20, 8], setback: [0, 10, 4], roofHeight: [4, 20, 6],
-    handleLength: [10, 200, 120], handleFrom: [0, 150, 0]
+    handleLength: [10, 120, 120]
   };
   const allOptions = key === 'wardrobe' ? P.options.concat(STRUCTURE_OPTIONS) : P.options;
   const bodyHeight = s => s.h - (s.opts.roof === 'standard' ? 0 : s.structure.roofHeight);
   const ROD_Y = 200;        // înălțimea barei de umerașe de la podea (cu soclu), cm
   const STORAGE_FROM = 220; // peste această înălțime dulapul primește depozitar sus
   const DOOR_MAX = 60;      // o coloană mai lată de atât are 2 uși, cm
+  const HANDLE_TOP = 122;   // capătul de sus al mânerului, de la marginea de jos a ușii, cm
   // Înălțimea interioară a depozitarului de sus (0 = fără depozitar)
   const storage = s => {
     if (key !== 'wardrobe' || s.h <= STORAGE_FROM) return 0;
@@ -568,7 +569,9 @@
     const zf = D + 0.15;
     const split = yt + T / 2;
     const bottomDoor = splitDoors(s) ? [PL + 0.2, split - 0.15] : [PL + 0.2, H - 0.2];
-    const rows = [bottomDoor.concat(PL + 0.2 + s.structure.handleFrom, s.structure.handleLength)];
+    // Capătul de sus al mânerului rămâne la HANDLE_TOP de la marginea de jos a ușii; scurtarea se face de jos
+    const handleBottom = PL + 0.2 + HANDLE_TOP - s.structure.handleLength;
+    const rows = [bottomDoor.concat(handleBottom, s.structure.handleLength)];
     if (splitDoors(s)) rows.push([split + 0.15, H - 0.2, null, null]);
     cols.forEach((c, i) => {
       const span = c.right - c.left, k = span > DOOR_MAX ? 2 : 1;
@@ -1019,7 +1022,7 @@
       <div class="cp-opt"><span>${key === 'wardrobe' ? 'Coloane' : 'Secțiuni'}</span><div id="cpCols"></div></div>
       ${P.options.map(o => `<div class="cp-opt"><span>${o.label}</span><div class="seg" data-opt="${o.key}">
         ${o.choices.map(c => `<button type="button" data-val="${c[0]}">${c[1]}</button>`).join('')}</div></div>` +
-        (key === 'wardrobe' && o.key === 'handle' ? structureRow('handleLength', 'Lungime mâner') + structureRow('handleFrom', 'De la marginea de jos a ușii') : '')).join('')}
+        (key === 'wardrobe' && o.key === 'handle' ? structureRow('handleLength', 'Lungime mâner') : '')).join('')}
     </section>
 
     <section class="cp-sec" id="cpConfig" data-sec="config">
@@ -1198,7 +1201,7 @@
       if (state.opts.base !== 'none') lines.push(`Înălțime soclu / picioare: ${state.structure.baseHeight} cm`);
       if (state.opts.base === 'recessed') lines.push(`Retragere soclu: ${state.structure.setback} cm`);
       if (state.opts.roof !== 'standard') lines.push(`Înălțime parte superioară: ${state.structure.roofHeight} cm`);
-      if (state.opts.handle === 'bar') lines.push(`Mâner: ${state.structure.handleLength} cm, la ${state.structure.handleFrom} cm de marginea de jos a ușii`);
+      if (state.opts.handle === 'bar') lines.push(`Lungime mâner: ${state.structure.handleLength} cm`);
       if (storage(state)) lines.push(`Depozitar sus: ${Math.round(storage(state))} cm`);
     }
     const svc = [state.svc.delivery && 'livrare', state.svc.assembly && 'asamblare'].filter(Boolean);
